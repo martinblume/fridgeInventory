@@ -3,6 +3,7 @@ package info.martinblume.fridgeinventory.rfidregistration.application.resources;
 import com.google.common.collect.Lists;
 import info.martinblume.fridgeinventory.rfidregistration.application.RfidItem;
 import info.martinblume.fridgeinventory.rfidregistration.application.RfidItemDAO;
+import info.martinblume.fridgeinventory.rfidregistration.views.RfidItemsView;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -16,7 +17,7 @@ import java.util.Collection;
  * Created by mblume on 23.12.14.
  */
 @Path("/rfidItems")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.TEXT_HTML)
 public class RfidItemResource{
 
     private final Collection<RfidItem> rfidItems = Lists.newArrayList();
@@ -27,9 +28,9 @@ public class RfidItemResource{
     }
 
     @GET
-    @Produces(value = MediaType.APPLICATION_JSON)
-    public Collection<RfidItem> getItems(){
-        return rfidItems;
+    @Produces(value = MediaType.TEXT_HTML)
+    public RfidItemsView getItems(){
+        return new RfidItemsView(rfidItems);
     }
 
     @POST

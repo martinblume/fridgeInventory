@@ -6,6 +6,7 @@ import io.dropwizard.Application;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import io.dropwizard.views.ViewBundle;
 import org.skife.jdbi.v2.DBI;
 
 /**
@@ -19,7 +20,7 @@ public class RfidRegistrationApplication extends Application<RfidRegistrationCon
 
     @Override
     public void initialize(Bootstrap<RfidRegistrationConfiguration> bootstrap) {
-        // nothing to do yet
+        bootstrap.addBundle(new ViewBundle());
     }
 
     @Override
