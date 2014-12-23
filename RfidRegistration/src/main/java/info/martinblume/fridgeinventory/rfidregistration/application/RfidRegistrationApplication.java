@@ -3,8 +3,10 @@ package info.martinblume.fridgeinventory.rfidregistration.application;
 import info.martinblume.fridgeinventory.rfidregistration.application.resources.RfidItemResource;
 import info.martinblume.fridgeinventory.rfidregistration.configuration.RfidRegistrationConfiguration;
 import io.dropwizard.Application;
+import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import org.skife.jdbi.v2.DBI;
 
 /**
  * @author Martin Blume
@@ -22,7 +24,11 @@ public class RfidRegistrationApplication extends Application<RfidRegistrationCon
 
     @Override
     public void run(RfidRegistrationConfiguration rfidRegistrationConfiguration, Environment environment) throws Exception {
-        final RfidItemResource resource = new RfidItemResource();
+        final DBIFactory factory = new DBIFactory();
+        final DBI jdbi = factory.build(environment, rfidRegistrationConfiguration.getDataSourceFactory(), "h2");
+        final RfidItemDAO dao = jdbi.onDemand(RfidItemDAO.class);
+        final RfidItemResource resource = new RfidItemResource(dao);
+        resource.addItem(new RfidItem("1","FirstItem"));
         environment.jersey().register(resource);
     }
 }

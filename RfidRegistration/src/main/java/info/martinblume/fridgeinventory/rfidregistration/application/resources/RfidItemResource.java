@@ -2,6 +2,7 @@ package info.martinblume.fridgeinventory.rfidregistration.application.resources;
 
 import com.google.common.collect.Lists;
 import info.martinblume.fridgeinventory.rfidregistration.application.RfidItem;
+import info.martinblume.fridgeinventory.rfidregistration.application.RfidItemDAO;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -19,6 +20,11 @@ import java.util.Collection;
 public class RfidItemResource{
 
     private final Collection<RfidItem> rfidItems = Lists.newArrayList();
+    private final RfidItemDAO dao;
+
+    public RfidItemResource(RfidItemDAO dao) {
+        this.dao = dao;
+    }
 
     @GET
     @Produces(value = MediaType.APPLICATION_JSON)
@@ -27,7 +33,7 @@ public class RfidItemResource{
     }
 
     @POST
-    public Response publishNewBlog(RfidItem rfidItem) {
+    public Response addItem(final RfidItem rfidItem) {
         rfidItems.add(rfidItem);
         return Response.noContent().build();
     }
