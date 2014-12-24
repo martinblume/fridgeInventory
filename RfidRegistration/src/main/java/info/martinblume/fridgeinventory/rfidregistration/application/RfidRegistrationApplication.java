@@ -29,7 +29,7 @@ public class RfidRegistrationApplication extends Application<RfidRegistrationCon
         final DBI jdbi = factory.build(environment, rfidRegistrationConfiguration.getDataSourceFactory(), "h2");
         final RfidItemDAO dao = jdbi.onDemand(RfidItemDAO.class);
         final RfidItemResource resource = new RfidItemResource(dao);
-        resource.addItem(new RfidItem("1","FirstItem"));
+        //resource.addItem(new RfidItem("1","FirstItem"));
         environment.jersey().register(resource);
     }
 }

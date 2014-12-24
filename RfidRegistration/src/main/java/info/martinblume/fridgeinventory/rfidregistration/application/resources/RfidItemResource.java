@@ -20,7 +20,6 @@ import java.util.Collection;
 @Produces(MediaType.TEXT_HTML)
 public class RfidItemResource{
 
-    private final Collection<RfidItem> rfidItems = Lists.newArrayList();
     private final RfidItemDAO dao;
 
     public RfidItemResource(RfidItemDAO dao) {
@@ -30,12 +29,12 @@ public class RfidItemResource{
     @GET
     @Produces(value = MediaType.TEXT_HTML)
     public RfidItemsView getItems(){
-        return new RfidItemsView(rfidItems);
+        return new RfidItemsView(dao.getItems());
     }
 
     @POST
     public Response addItem(final RfidItem rfidItem) {
-        rfidItems.add(rfidItem);
+        dao.addItem(rfidItem.getId(),rfidItem.getName());
         return Response.noContent().build();
     }
 }
