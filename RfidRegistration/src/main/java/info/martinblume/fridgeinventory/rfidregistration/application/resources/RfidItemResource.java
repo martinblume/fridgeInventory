@@ -1,14 +1,12 @@
 package info.martinblume.fridgeinventory.rfidregistration.application.resources;
 
-import com.google.common.collect.Lists;
-import info.martinblume.fridgeinventory.rfidregistration.application.RfidItem;
-import info.martinblume.fridgeinventory.rfidregistration.application.RfidItemDAO;
+import info.martinblume.fridgeinventory.rfidregistration.application.model.RfidItem;
+import info.martinblume.fridgeinventory.rfidregistration.application.dao.RfidItemDAO;
 import info.martinblume.fridgeinventory.rfidregistration.views.RfidItemsView;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Collection;
 
 /**
  * Created by mblume on 23.12.14.

@@ -1,5 +1,8 @@
 package info.martinblume.fridgeinventory.rfidregistration.application;
 
+import info.martinblume.fridgeinventory.rfidregistration.application.dao.FridgeItemDAO;
+import info.martinblume.fridgeinventory.rfidregistration.application.dao.RfidItemDAO;
+import info.martinblume.fridgeinventory.rfidregistration.application.resources.FridgeItemResource;
 import io.dropwizard.assets.AssetsBundle;
 import info.martinblume.fridgeinventory.rfidregistration.application.resources.RfidItemResource;
 import info.martinblume.fridgeinventory.rfidregistration.configuration.RfidRegistrationConfiguration;
@@ -30,10 +33,14 @@ public class RfidRegistrationApplication extends Application<RfidRegistrationCon
         final DBIFactory factory = new DBIFactory();
         final DBI jdbi = factory.build(environment, rfidRegistrationConfiguration.getDataSourceFactory(), "h2");
         final RfidItemDAO dao = jdbi.onDemand(RfidItemDAO.class);
+        final FridgeItemDAO fridgeItemDAO = jdbi.onDemand(FridgeItemDAO.class);
         final RfidItemResource resource = new RfidItemResource(dao);
+        final FridgeItemResource fridgeItemResource = new FridgeItemResource(fridgeItemDAO);
+        //fridgeItemDAO.createFridgeItemTable();
         //dao.createRfidItemTable();
         //resource.addItem(new RfidItem("1","FirstItem"));
         environment.jersey().register(resource);
+        environment.jersey().register(fridgeItemResource);
         environment.jersey().setUrlPattern("/api/*");
         environment.jersey().register(new ErrorMessageBodyWriter());
     }

@@ -1,5 +1,6 @@
 package info.martinblume.fridgeinventory.rfidregistration.application;
 
+import info.martinblume.fridgeinventory.rfidregistration.application.model.RfidItem;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 

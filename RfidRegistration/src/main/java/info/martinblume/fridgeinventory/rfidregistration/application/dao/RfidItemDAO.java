@@ -1,6 +1,8 @@
-package info.martinblume.fridgeinventory.rfidregistration.application;
+package info.martinblume.fridgeinventory.rfidregistration.application.dao;
 
 
+import info.martinblume.fridgeinventory.rfidregistration.application.RfidItemMapper;
+import info.martinblume.fridgeinventory.rfidregistration.application.model.RfidItem;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;

@@ -1,14 +1,17 @@
-package info.martinblume.fridgeinventory.rfidregistration.application;
+package info.martinblume.fridgeinventory.rfidregistration.application.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
+ * Class representing an RFID item registered in the system
+ *
  * Created by mblume on 23.12.14.
  */
 public class RfidItem {
 
     private static final String DEFAULT_NAME = "defaultName";
     private static final String DEFAULT_ID = "defaultId";
+
     private final String id;
 
     private final String name;

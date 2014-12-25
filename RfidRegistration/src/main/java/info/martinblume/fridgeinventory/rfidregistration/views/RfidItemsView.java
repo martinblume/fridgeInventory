@@ -1,7 +1,7 @@
 package info.martinblume.fridgeinventory.rfidregistration.views;
 
 
-import info.martinblume.fridgeinventory.rfidregistration.application.RfidItem;
+import info.martinblume.fridgeinventory.rfidregistration.application.model.RfidItem;
 import io.dropwizard.views.View;
 
 import java.util.Collection;
