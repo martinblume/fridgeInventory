@@ -20,6 +20,9 @@ public interface RfidItemDAO {
     @SqlUpdate("insert into RFID_ITEMS (id, name) values (:id, :name)")
     void addItem(@Bind("id") String id, @Bind("name") String name);
 
+    @SqlUpdate("delete from RFID_ITEMS where id=:id")
+    void deleteItem(@Bind("id") String id);
+
     @SqlQuery("select name from RFID_ITEMS where id = :id")
     String findNameById(@Bind("id") String id);
 

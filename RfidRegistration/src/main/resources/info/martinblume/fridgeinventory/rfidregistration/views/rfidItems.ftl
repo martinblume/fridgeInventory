@@ -31,29 +31,37 @@
       return result;
     }
 
-    function submit(){
-        var name = document.getElementById("name").value;
-        var id = document.getElementById("id").value;
-        var req = createRequest(); // defined above
-        var data = {};
-        data.id = id;
-        data.name = name;
-        // Create the callback:
+    function prepareRequest(type, url){
+         // Create the callback:
+         var req = createRequest(); // defined above
         req.onreadystatechange = function() {
           if (req.readyState != 4) return; // Not there yet
           if (req.status != 200) {
             // Handle request failure here...
             return;
           }
-          // Request successful, read the response
-          var resp = req.responseText;
-          alert(resp);
         }
 
-        req.open("POST", "/api/rfidItems", true);
+        req.open(type, url, true);
+        return req;
+    }
+
+    function submit(){
+        var name = document.getElementById("name").value;
+        var id = document.getElementById("id").value;
+        var data = {};
+        data.id = id;
+        data.name = name;
+
+        var req = prepareRequest("POST", "/api/rfidItems");
         req.setRequestHeader("Content-Type",
                              "application/json; charset=UTF-8");
         req.send(JSON.stringify(data));
+    }
+
+    function removeItem(id){
+        var req = prepareRequest("DELETE", "/api/rfidItems/"+id);
+        req.send();
     }
   </script>
     </div>
@@ -62,6 +70,7 @@
         <ul>
             <#list rfidItems as item>
                 <li>${item.id}: ${item.name}
+                    <input id="delete" type="button" value="delete" onclick="removeItem('${item.id}')" />
             </#list>
         </ul>
     </div>

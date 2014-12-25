@@ -5,10 +5,7 @@ import info.martinblume.fridgeinventory.rfidregistration.application.RfidItem;
 import info.martinblume.fridgeinventory.rfidregistration.application.RfidItemDAO;
 import info.martinblume.fridgeinventory.rfidregistration.views.RfidItemsView;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Collection;
@@ -34,6 +31,13 @@ public class RfidItemResource{
     @POST
     public Response addItem(final RfidItem rfidItem) {
         dao.addItem(rfidItem.getId(),rfidItem.getName());
+        return Response.ok().build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public Response deleteItem(@PathParam("id") final String id){
+        dao.deleteItem(id);
         return Response.ok().build();
     }
 }
