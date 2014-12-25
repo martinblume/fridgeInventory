@@ -28,4 +28,7 @@ public interface RfidItemDAO {
 
     @SqlQuery("select * from RFID_ITEMS")
     List<RfidItem> getItems();
+
+    @SqlQuery("select * from RFID_ITEMS where id = :id")
+    RfidItem findItemById(String id);
 }

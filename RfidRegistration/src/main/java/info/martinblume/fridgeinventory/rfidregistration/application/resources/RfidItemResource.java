@@ -28,6 +28,13 @@ public class RfidItemResource{
         return new RfidItemsView(dao.getItems());
     }
 
+    @GET
+    @Produces(value = MediaType.APPLICATION_JSON)
+    @Path("/{id}")
+    public RfidItem getItem(@PathParam("id") final String id){
+        return dao.findItemById(id);
+    }
+
     @POST
     public Response addItem(final RfidItem rfidItem) {
         dao.addItem(rfidItem.getId(),rfidItem.getName());
