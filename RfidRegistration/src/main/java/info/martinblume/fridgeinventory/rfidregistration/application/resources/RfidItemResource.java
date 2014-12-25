@@ -17,7 +17,6 @@ import java.util.Collection;
  * Created by mblume on 23.12.14.
  */
 @Path("/rfidItems")
-@Produces(MediaType.TEXT_HTML)
 public class RfidItemResource{
 
     private final RfidItemDAO dao;
@@ -35,6 +34,6 @@ public class RfidItemResource{
     @POST
     public Response addItem(final RfidItem rfidItem) {
         dao.addItem(rfidItem.getId(),rfidItem.getName());
-        return Response.noContent().build();
+        return Response.ok().build();
     }
 }

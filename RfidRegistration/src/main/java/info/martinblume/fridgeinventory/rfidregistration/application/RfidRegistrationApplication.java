@@ -1,5 +1,6 @@
 package info.martinblume.fridgeinventory.rfidregistration.application;
 
+import io.dropwizard.assets.AssetsBundle;
 import info.martinblume.fridgeinventory.rfidregistration.application.resources.RfidItemResource;
 import info.martinblume.fridgeinventory.rfidregistration.configuration.RfidRegistrationConfiguration;
 import io.dropwizard.Application;
@@ -21,6 +22,7 @@ public class RfidRegistrationApplication extends Application<RfidRegistrationCon
     @Override
     public void initialize(Bootstrap<RfidRegistrationConfiguration> bootstrap) {
         bootstrap.addBundle(new ViewBundle());
+        bootstrap.addBundle(new AssetsBundle("/assets", "", "index.html"));
     }
 
     @Override
@@ -29,7 +31,10 @@ public class RfidRegistrationApplication extends Application<RfidRegistrationCon
         final DBI jdbi = factory.build(environment, rfidRegistrationConfiguration.getDataSourceFactory(), "h2");
         final RfidItemDAO dao = jdbi.onDemand(RfidItemDAO.class);
         final RfidItemResource resource = new RfidItemResource(dao);
+        //dao.createRfidItemTable();
         //resource.addItem(new RfidItem("1","FirstItem"));
         environment.jersey().register(resource);
+        environment.jersey().setUrlPattern("/api/*");
+        environment.jersey().register(new ErrorMessageBodyWriter());
     }
 }
