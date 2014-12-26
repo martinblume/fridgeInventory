@@ -69,7 +69,7 @@
         <h1>Items:</h1>
         <ul>
             <#list rfidItems as item>
-                <li>${item.id}: ${item.name}
+                <li>${item.id}: ${item.name} in Fridge: <#if item.isInFridge>Yes<#else>No</#if>
                     <input id="delete" type="button" value="delete" onclick="removeItem('${item.id}')" />
             </#list>
         </ul>

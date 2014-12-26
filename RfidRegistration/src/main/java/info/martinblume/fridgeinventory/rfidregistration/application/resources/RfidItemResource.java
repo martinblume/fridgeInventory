@@ -7,12 +7,15 @@ import info.martinblume.fridgeinventory.rfidregistration.views.RfidItemsView;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.logging.Logger;
 
 /**
  * Created by mblume on 23.12.14.
  */
 @Path("/rfidItems")
 public class RfidItemResource{
+
+    private static final Logger LOG = Logger.getLogger(RfidItemResource.class.getName());
 
     private final RfidItemDAO dao;
 
@@ -45,4 +48,13 @@ public class RfidItemResource{
         dao.deleteItem(id);
         return Response.ok().build();
     }
+
+    @PUT
+    @Path("/{id}")
+    public Response toggleIsInFridge(@PathParam("id") final String id){
+        LOG.info("Toggle: "+id);
+        dao.toggleIsInFridge(id);
+        return Response.ok().build();
+    }
+
 }

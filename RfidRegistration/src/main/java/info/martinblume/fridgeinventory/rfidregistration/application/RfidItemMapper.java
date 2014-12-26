@@ -14,6 +14,6 @@ public class RfidItemMapper implements ResultSetMapper<RfidItem>
 {
     public RfidItem map(int index, ResultSet r, StatementContext ctx) throws SQLException
     {
-        return new RfidItem(r.getString("id"), r.getString("name"));
+        return new RfidItem(r.getString("id"), r.getString("name"), r.getBoolean("isInFridge"));
     }
 }

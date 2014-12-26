@@ -16,10 +16,10 @@ import java.util.List;
 @RegisterMapper(RfidItemMapper.class)
 public interface RfidItemDAO {
 
-    @SqlUpdate("create table RFID_ITEMS (id varchar(100) primary key, name varchar(100))")
+    @SqlUpdate("create table RFID_ITEMS (id varchar(100) primary key, name varchar(100), isInFridge boolean)")
     void createRfidItemTable();
 
-    @SqlUpdate("insert into RFID_ITEMS (id, name) values (:id, :name)")
+    @SqlUpdate("insert into RFID_ITEMS (id, name, isInFridge) values (:id, :name, false)")
     void addItem(@Bind("id") String id, @Bind("name") String name);
 
     @SqlUpdate("delete from RFID_ITEMS where id=:id")
@@ -28,9 +28,15 @@ public interface RfidItemDAO {
     @SqlQuery("select name from RFID_ITEMS where id = :id")
     String findNameById(@Bind("id") String id);
 
+    @SqlQuery("select isInFridge from RFID_ITEMS where id = :id")
+    Boolean isInFridge(@Bind("id") String id);
+
     @SqlQuery("select * from RFID_ITEMS")
     List<RfidItem> getItems();
 
     @SqlQuery("select * from RFID_ITEMS where id = :id")
-    RfidItem findItemById(String id);
+    RfidItem findItemById(@Bind("id") String id);
+
+    @SqlUpdate("update RFID_ITEMS set isInFridge = not isInFridge where id=:id")
+    void toggleIsInFridge(@Bind("id") String id);
 }
