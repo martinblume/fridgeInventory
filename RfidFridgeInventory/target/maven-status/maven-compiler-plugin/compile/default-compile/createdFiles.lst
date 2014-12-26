@@ -1,9 +1,0 @@
-info/martinblume/fridgeinventory/rfidregistration/application/RfidItemMapper.class
-info/martinblume/fridgeinventory/rfidregistration/application/BooleanMapper.class
-info/martinblume/fridgeinventory/rfidregistration/configuration/RfidRegistrationConfiguration.class
-info/martinblume/fridgeinventory/rfidregistration/application/ErrorMessageBodyWriter.class
-info/martinblume/fridgeinventory/rfidregistration/application/RfidRegistrationApplication.class
-info/martinblume/fridgeinventory/rfidregistration/application/resources/RfidItemResource.class
-info/martinblume/fridgeinventory/rfidregistration/application/model/RfidItem.class
-info/martinblume/fridgeinventory/rfidregistration/application/dao/RfidItemDAO.class
-info/martinblume/fridgeinventory/rfidregistration/views/RfidItemsView.class
