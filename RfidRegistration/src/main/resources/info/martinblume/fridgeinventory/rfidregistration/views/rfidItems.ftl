@@ -32,9 +32,7 @@
     }
 
     function prepareRequest(type, url){
-         // Create the callback:
         var req = createRequest(); // defined above
-
         req.open(type, url, true);
         return req;
     }
@@ -74,7 +72,7 @@
             // Handle request failure here...
             return;
           }
-          var response = req.responseText;
+          var response = JSON.parse(req.responseText);
           name.value = response.name;
           id.value = response.id;
         };
