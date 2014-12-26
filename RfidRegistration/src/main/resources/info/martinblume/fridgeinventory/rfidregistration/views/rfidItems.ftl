@@ -33,14 +33,7 @@
 
     function prepareRequest(type, url){
          // Create the callback:
-         var req = createRequest(); // defined above
-        req.onreadystatechange = function() {
-          if (req.readyState != 4) return; // Not there yet
-          if (req.status != 200) {
-            // Handle request failure here...
-            return;
-          }
-        }
+        var req = createRequest(); // defined above
 
         req.open(type, url, true);
         return req;
@@ -54,6 +47,13 @@
         data.name = name;
 
         var req = prepareRequest("POST", "/api/rfidItems");
+        req.onreadystatechange = function() {
+          if (req.readyState != 4) return; // Not there yet
+          if (req.status != 200) {
+            // Handle request failure here...
+            return;
+          }
+        };
         req.setRequestHeader("Content-Type",
                              "application/json; charset=UTF-8");
         req.send(JSON.stringify(data));
@@ -68,6 +68,16 @@
         var name = document.getElementById("name");
         var id = document.getElementById("id");
         var req = prepareRequest("GET", "/api/rfidItems/last");
+        req.onreadystatechange = function() {
+          if (req.readyState != 4) return; // Not there yet
+          if (req.status != 200) {
+            // Handle request failure here...
+            return;
+          }
+          var response = req.responseText;
+          name.value = response.name;
+          id.value = response.id;
+        };
         req.send();
 
      }, 1000);

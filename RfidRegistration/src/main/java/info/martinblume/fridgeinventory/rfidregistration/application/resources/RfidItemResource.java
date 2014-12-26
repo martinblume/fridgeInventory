@@ -62,6 +62,7 @@ public class RfidItemResource {
 
     @GET
     @Path("/last")
+    @Produces(value = MediaType.APPLICATION_JSON)
     public RfidItem getLastScannedItem() {
         return lastScanned;
     }

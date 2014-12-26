@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class RfidItem {
 
-    private static final String DEFAULT_NAME = "defaultName";
-    private static final String DEFAULT_ID = "defaultId";
+    private static final String DEFAULT_NAME = "name";
+    private static final String DEFAULT_ID = "id";
     public static final RfidItem NONE = new RfidItem();
 
     private final String id;
