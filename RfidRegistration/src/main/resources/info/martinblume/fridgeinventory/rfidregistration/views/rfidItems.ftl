@@ -63,6 +63,14 @@
         var req = prepareRequest("DELETE", "/api/rfidItems/"+id);
         req.send();
     }
+
+    setInterval(function(){
+        var name = document.getElementById("name");
+        var id = document.getElementById("id");
+        var req = prepareRequest("GET", "/api/rfidItems/last");
+        req.send();
+
+     }, 1000);
   </script>
     </div>
     <div>

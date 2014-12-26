@@ -11,7 +11,7 @@ public class RfidItem {
 
     private static final String DEFAULT_NAME = "defaultName";
     private static final String DEFAULT_ID = "defaultId";
-
+    public static final RfidItem NONE = new RfidItem();
 
     private final String id;
 
@@ -56,4 +56,28 @@ public class RfidItem {
     public void setIsInFridge(boolean isInFridge) {
         this.isInFridge = isInFridge;
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RfidItem rfidItem = (RfidItem) o;
+
+        if (isInFridge != rfidItem.isInFridge) return false;
+        if (!id.equals(rfidItem.id)) return false;
+        if (!name.equals(rfidItem.name)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + (isInFridge ? 1 : 0);
+        return result;
+    }
+
 }
