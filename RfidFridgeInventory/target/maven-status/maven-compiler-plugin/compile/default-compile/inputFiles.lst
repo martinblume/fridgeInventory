@@ -1,0 +1,9 @@
+/Users/mblume/Development/fridgeInventory/RfidRegistration/src/main/java/info/martinblume/fridgeinventory/rfidregistration/configuration/RfidRegistrationConfiguration.java
+/Users/mblume/Development/fridgeInventory/RfidRegistration/src/main/java/info/martinblume/fridgeinventory/rfidregistration/application/resources/RfidItemResource.java
+/Users/mblume/Development/fridgeInventory/RfidRegistration/src/main/java/info/martinblume/fridgeinventory/rfidregistration/application/BooleanMapper.java
+/Users/mblume/Development/fridgeInventory/RfidRegistration/src/main/java/info/martinblume/fridgeinventory/rfidregistration/application/RfidItemMapper.java
+/Users/mblume/Development/fridgeInventory/RfidRegistration/src/main/java/info/martinblume/fridgeinventory/rfidregistration/application/dao/RfidItemDAO.java
+/Users/mblume/Development/fridgeInventory/RfidRegistration/src/main/java/info/martinblume/fridgeinventory/rfidregistration/application/ErrorMessageBodyWriter.java
+/Users/mblume/Development/fridgeInventory/RfidRegistration/src/main/java/info/martinblume/fridgeinventory/rfidregistration/views/RfidItemsView.java
+/Users/mblume/Development/fridgeInventory/RfidRegistration/src/main/java/info/martinblume/fridgeinventory/rfidregistration/application/RfidRegistrationApplication.java
+/Users/mblume/Development/fridgeInventory/RfidRegistration/src/main/java/info/martinblume/fridgeinventory/rfidregistration/application/model/RfidItem.java
