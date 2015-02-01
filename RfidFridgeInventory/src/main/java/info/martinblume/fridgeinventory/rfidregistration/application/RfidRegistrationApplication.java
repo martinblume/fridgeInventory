@@ -27,7 +27,8 @@ public class RfidRegistrationApplication extends Application<RfidRegistrationCon
 
     @Override
     public void initialize(Bootstrap<RfidRegistrationConfiguration> bootstrap) {
-        bootstrap.addBundle(new AssetsBundle("/assets", "/rfidItems", "rfidItems.html"));
+        bootstrap.addBundle(new AssetsBundle("/assets", "/rfidItems", "rfidItems.html", "landingPage"));
+        bootstrap.addBundle(new AssetsBundle("/assets/scripts", "/scripts", "", "scripts"));
     }
 
     @Override
