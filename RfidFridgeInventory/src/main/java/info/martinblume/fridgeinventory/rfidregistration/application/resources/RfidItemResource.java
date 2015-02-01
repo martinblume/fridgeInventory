@@ -2,12 +2,13 @@ package info.martinblume.fridgeinventory.rfidregistration.application.resources;
 
 import info.martinblume.fridgeinventory.rfidregistration.application.model.RfidItem;
 import info.martinblume.fridgeinventory.rfidregistration.application.dao.RfidItemDAO;
-import info.martinblume.fridgeinventory.rfidregistration.views.RfidItemsView;
-import sun.security.x509.RFC822Name;
+import org.atmosphere.annotation.Broadcast;
+import org.atmosphere.annotation.Suspend;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -27,9 +28,9 @@ public class RfidItemResource {
     }
 
     @GET
-    @Produces(value = MediaType.TEXT_HTML)
-    public RfidItemsView getItems() {
-        return new RfidItemsView(dao.getItems());
+    @Produces(value = MediaType.APPLICATION_JSON)
+    public List<RfidItem> getItems() {
+        return dao.getItems();
     }
 
     @GET
@@ -39,10 +40,12 @@ public class RfidItemResource {
         return dao.findItemById(id);
     }
 
+    @Broadcast(writeEntity = false)
     @POST
-    public Response addItem(final RfidItem rfidItem) {
+    @Produces("application/json")
+    public RfidItem addItem(final RfidItem rfidItem) {
         dao.addItem(rfidItem.getId(), rfidItem.getName());
-        return Response.ok().build();
+        return rfidItem;
     }
 
     @DELETE
@@ -71,8 +74,8 @@ public class RfidItemResource {
     @Path("/last")
     public void setLastScanned(final RfidItem rfidItem) {
         this.lastScanned = rfidItem;
-        for(RfidItem item: dao.getItems()){
-            if(item.getId().equals(rfidItem.getId())){
+        for (RfidItem item : dao.getItems()) {
+            if (item.getId().equals(rfidItem.getId())) {
                 toggleIsInFridge(rfidItem.getId());
                 return;
             }
